@@ -34,15 +34,15 @@ const HomePage = (props) => {
 export async function getStaticProps() {
   //fetch data from an API.
 
-  const client = await MongoClient.connect('mongodb+srv://Trigun:9841735635aA@cluster0.l11u7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+  // const client = await MongoClient.connect('mongodb+srv://<UserName>:<password>@cluster0.l11u7.mongodb.net/<database_name>?retryWrites=true&w=majority')
 
-  const db = client.db();
+  // const db = client.db();
 
-  const meetupsCollection = db.collection('meetups');
+  // const meetupsCollection = db.collection('meetups');
 
-  const meetups = await meetupsCollection.find().toArray();
+  // const meetups = await meetupsCollection.find().toArray();
 
-  client.close();
+  // client.close();
 
   return {
     props: {
