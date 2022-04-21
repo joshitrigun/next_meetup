@@ -26,19 +26,21 @@ const MeetupDetails = (props) => {
   )
 }
 export async function getStaticPaths() {
-  const client = await MongoClient.connect('mongodb+srv://Trigun:9841735635aA@cluster0.l11u7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+  // const client = await MongoClient.connect('mongodb+srv://<UserName>:<password>@cluster0.l11u7.mongodb.net/<database_name>?retryWrites=true&w=majority')
 
-  const db = client.db();
+  // const db = client.db();
 
-  const meetupsCollection = db.collection('meetups');
+  // const meetupsCollection = db.collection('meetups');
 
-  const meetups = await meetupsCollection.find({}, { _id: 1 }).toArray();
+  // const meetups = await meetupsCollection.find().toArray();
 
-  client.close();
+  // client.close();
 
   return {
-    fallback: true,
-    paths: meetups.map(meetup => ({ params: { meetupId: meetup._id.toString() } }))
+    fallback: 'blocking',
+    paths: meetups.map(meetup => ({
+      params: { meetupId: meetup._id.toString() }
+    }))
 
   }
 }
@@ -47,15 +49,15 @@ export async function getStaticProps(context) {
 
   const meetupId = context.params.meetupId;
   // console.log(meetupId);
-  const client = await MongoClient.connect('mongodb+srv://Trigun:9841735635aA@cluster0.l11u7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+  // const client = await MongoClient.connect('mongodb+srv://<UserName>:<password>@cluster0.l11u7.mongodb.net/<database_name>?retryWrites=true&w=majority')
 
-  const db = client.db();
+  // const db = client.db();
 
-  const meetupsCollection = db.collection('meetups');
+  // const meetupsCollection = db.collection('meetups');
 
-  const selectedMeetup = await meetupsCollection.findOne({ _id: ObjectId(meetupId) });
+  // const meetups = await meetupsCollection.find().toArray();
 
-  client.close();
+  // client.close();
 
   return {
     props: {
